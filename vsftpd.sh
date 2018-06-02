@@ -20,8 +20,14 @@ rm -f /etc/vsftpd/virtual_users.conf
 # 修改数据库文件权限
 chmod 700 /etc/vsftpd/virtual_users.db
 
-# 在配置文件中写入地址
+# 设置可连接地址
+echo -e "\n# 设置可连接地址" >> /etc/vsftpd/vsftpd.conf
 echo "pasv_address=${PASV_ADDRESS}" >> /etc/vsftpd/vsftpd.conf
+
+# 设置vsftp可随机占用的端口
+echo -e "\n# 设置vsftp可随机占用的端口" >> /etc/vsftpd/vsftpd.conf
+echo "pasv_address=${PASV_MIN_PORT}" >> /etc/vsftpd/vsftpd.conf
+echo "pasv_address=${PASV_MAX_PORT}" >> /etc/vsftpd/vsftpd.conf
 
 # 创建虚拟用户主配置目录
 rm -rf /etc/vsftpd/ftp_user_conf

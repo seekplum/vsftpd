@@ -12,10 +12,20 @@
 docker run -d -v /home/ftp:/home/ftp \
 -p 20:20 \
 -p 21:21 \
+-p 47000-47400:47000-47400 \
 -e FTP_USER=test -e FTP_PASS=test -e PASV_ADDRESS=0.0.0.0 \
+-e PASV_MIN_PORT=47000 -e PASV_MAX_PORT=47400 \
 --name vsftpd \
 vsftpd
 ```
+
+### 参数解释
+* -p: 主机和端口容器的端口映射
+* FTP_USER: ftp用户名，不指定则默认值为ftp
+* FTP_PASS: ftp密码, 不指定则默认值为ftp
+* PASV_ADDRESS: ftp可访问地址值为127.0.0.1代表只允许本地访问，0.0.0.0代表允许其他机器远程连接，默认值为127.0.0.1
+* PASV_MIN_PORT: 被动模式下最小的端口值，不指定则默认值为47000
+* PASV_MAX_PORT: 被动模式下最大的端口值，不指定则默认值为47400
 
 ## 进入交互式容器
 
@@ -42,6 +52,8 @@ vsftpd bash
 ```bash
 export FTP_USER=test && \
 export FTP_PASS=test && \
+export PASV_MIN_PORT=47000 && \
+export PASV_MAX_PORT=47400 && \
 export PASV_ADDRESS=0.0.0.0
 ```
 
