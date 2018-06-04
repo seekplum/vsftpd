@@ -16,7 +16,7 @@ docker run -d -v /home/ftp:/home/ftp \
 -e FTP_USER=test -e FTP_PASS=test -e PASV_ADDRESS=0.0.0.0 \
 -e PASV_MIN_PORT=47000 -e PASV_MAX_PORT=47400 \
 --name vsftpd \
-vsftpd
+seekplum/vsftpd
 ```
 
 ### 参数解释
@@ -29,7 +29,7 @@ vsftpd
 
 ## 进入交互式容器
 
-> docker exec -it vsftpd bash
+> docker exec -it seekplum/vsftpd bash
 
 ## 手动启动ftp服务器
 
@@ -40,12 +40,12 @@ docker run -d -v /home/ftp:/home/ftp \
 -p 20:20 \
 -p 21:21 \
 --name vsftpd
-vsftpd bash
+seekplum/vsftpd bash
 ```
 
 * 进入交互式容器
 
-> docker exec -it vsftpd bash
+> docker exec -it seekplum/vsftpd bash
 
 * 设置环境变量
 
